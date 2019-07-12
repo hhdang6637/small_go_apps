@@ -3,7 +3,9 @@
 ***vtv_link_go***:
 
 Support get link from vtvgo.vn
-example:
+
+**Example:**
+
 ```
 ./vtv_link_go "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv2-2.html"
 {
