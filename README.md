@@ -6,36 +6,19 @@ Support get link from vtvgo.vn
 
 **Example:**
 
-```
-./vtv_link_go "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv2-2.html"
-{
-    "stream_url": [
-        "https:\/\/1414383384.rsc.cdn77.org\/FM5nyVcAK5j_tFI2wxoRXQ==,1562915930\/ls-46961-2\/index.m3u8"
-    ],
-    "ads_tags": "https:\/\/pubads.g.doubleclick.net\/gampad\/live\/ads?iu=\/276136803\/vtvgo.desktop.vtv2.video&description_url=http%3A%2F%2Fvtvgo.vn&env=vp&impl=s&correlator=&tfcd=0&npa=0&gdfp_req=1&output=vast&sz=640x480&unviewed_position_start=1",
-    "chromecast_url": "https:\/\/1414383384.rsc.cdn77.org\/FM5nyVcAK5j_tFI2wxoRXQ==,1562915930\/ls-46961-2\/index.m3u8",
-    "remoteip": "174.138.20.203",
-    "content_id": 2,
-    "stream_info": [
-        {
-            "bandwidth": 528000,
-            "resolution": "360"
-        },
-        {
-            "bandwidth": 928000,
-            "resolution": "480"
-        },
-        {
-            "bandwidth": 1728000,
-            "resolution": "720"
-        }
-    ],
-    "date": "",
-    "player_type": "native",
-    "channel_name": "vtv2",
-    "geoname_id": 1880251,
-    "ads_time": "1"
-}
+./vtv_link_go 8080
 
+Open chrome with link [http://127.0.0.1:8080](http://127.0.0.1:8080)
+
+```
+VTV Link Table
+Channel	M3U8 link
+vtv3	http://live.vtvdigital.vn/hls/c62cfd27ac1d37c424fc138c2e3b8277/1562944726716/live/_definst_/vtv3-high.m3u8
+vtv4	http://live.vtvdigital.vn/hls/e8b401433bb09bbaa1c792c1879e3eb5/1562944728285/live/_definst_/vtv4-high.m3u8
+vtv5	http://live.vtvdigital.vn/hls/013480cad481e41848a9cc6a5fc204df/1562944729922/live/_definst_/vtv5-high.m3u8
+vtv6	http://live.vtvdigital.vn/hls/02fa850ea279db88694520e15fe7e334/1562944731566/live/_definst_/vtv6-high.m3u8
+vtv7	http://live.vtvdigital.vn/hls/e364fc9cf350ef06b5fb6aef06c9e01e/1562944733091/live/_definst_/vtv5tnb-high.m3u8
+vtv1	http://live.vtvdigital.vn/hls/78a744684de002a14d5f63422fdd67c2/1562944723050/live/_definst_/vtv1-high.m3u8
+vtv2	http://live.vtvdigital.vn/hls/8157663a7b1fc1de1b44afa02ce60043/1562944724976/live/_definst_/vtv2-high.m3u8
 
 ```
