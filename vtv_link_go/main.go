@@ -12,15 +12,19 @@ import (
 
 var (
 	vtvChannel = map[string]string{
-		"vtv1": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv1-1.html",
-		"vtv2": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv2-2.html",
-		"vtv3": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv3-3.html",
-		"vtv4": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv4-4.html",
-		"vtv5": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv5-5.html",
-		"vtv6": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv6-6.html",
-		"vtv7": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv7-7.html",
-		// "vtv8": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv8-8.html",
-		// "vtv9": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv9-9.html",
+		"vtv1":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv1-1.html",
+		"vtv2":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv2-2.html",
+		"vtv3":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv3-3.html",
+		"vtv4":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv4-4.html",
+		"vtv5":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv5-5.html",
+		"vtv6":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv6-6.html",
+		"vtv7":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv7-27.html",
+		"vtv8":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv8-36.html",
+		"vtv9":     "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv9-39.html",
+		"vtv5_tnb": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv5-tây-nam-bộ-7.html",
+		"vtv5_tn":  "https://vtvgo.vn/xem-truc-tuyen-kenh-kênh-vtv5-tây-nguyên-163.html",
+		// "Yeah1TV":  "https://vtvgo.vn/xem-truc-tuyen-kenh-yeah1tv-195.html",
+		"HungYen": "https://vtvgo.vn/xem-truc-tuyen-kenh-th-hưng-yên-185.html",
 	}
 
 	vtvM3u8Links = map[string][]string{}
@@ -105,7 +109,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 
 		fmt.Fprintf(w, `
 		<tr>
-	  		<td><a href="/%s.m3u8" >%s</a></td>
+	  		<td><h2><a href="/%s.m3u8" >%s</a></h2></td>
 	  		<td>%s</td>
 		</tr>`, k, k, vtvM3u8Links[k][len(vtvM3u8Links[k])-1])
 	}
@@ -195,6 +199,20 @@ func main() {
 		fmt.Fprintf(os.Stderr, "you must provide port number for web server\n")
 		os.Exit(1)
 	}
+
+	logger.Printf("Collect link started")
+
+	for k := range vtvChannel {
+		if vtvM3u8Links[k] == nil || len(vtvM3u8Links[k]) == 0 {
+			vtvM3u8Links[k] = vtvGetM3u8Link(k)
+		}
+
+		if len(vtvM3u8Links[k]) == 0 {
+			logger.Panicf(`Fail to get m3u8 link %s from vtv.go`, k)
+		}
+	}
+
+	logger.Printf("Collect link done")
 
 	portNumber, err := strconv.Atoi(os.Args[1])
 	if err != nil {
