@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -23,6 +24,8 @@ var (
 	}
 
 	vtvM3u8Links = map[string][]string{}
+
+	logger = log.New(os.Stdout, "", log.Ldate|log.Lmicroseconds)
 )
 
 func testVtvM3u8Link() {
@@ -35,7 +38,7 @@ func testVtvM3u8Link() {
 		m3u8Links = vtvM3u8Links["vtv1"]
 		tsLinks, err = vtvUtil.M3u8GetTSLinks(m3u8Links[len(m3u8Links)-1])
 		if err != nil {
-			panic(err)
+			logger.Panic(err)
 		}
 	}
 
@@ -44,15 +47,19 @@ func testVtvM3u8Link() {
 			fmt.Println(link)
 		}
 	} else {
-		panic("m3u8 link is not found")
+		logger.Panic("m3u8 link is not found")
 	}
 }
 
 func vtvGetM3u8Link(vtv string) []string {
+	logger.Printf("vtvGetM3u8Link('%s') start", vtv)
+	defer logger.Printf("vtvGetM3u8Link('%s') end", vtv)
 	return vtvUtil.M3u8Index2Mono(vtvUtil.GetVtvGoM3u8Link(vtvChannel[vtv]))
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
+
+	logger.Printf("%s: %s", r.RemoteAddr, r.RequestURI)
 
 	fmt.Fprint(w, `<!DOCTYPE html>
 		<html>
@@ -93,8 +100,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if len(vtvM3u8Links[k]) == 0 {
-			fmt.Fprintf(w, `Fail to get m3u8 link %s from vtv.go`, k)
-			return
+			logger.Panicf(`Fail to get m3u8 link %s from vtv.go`, k)
 		}
 
 		fmt.Fprintf(w, `
@@ -112,6 +118,8 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func vtvHandler(w http.ResponseWriter, r *http.Request) {
+
+	logger.Printf("%s: %s", r.RemoteAddr, r.RequestURI)
 
 	vtvC := "vtv1"
 	switch r.RequestURI {
@@ -140,7 +148,7 @@ func vtvHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(vtvM3u8Links[vtvC]) == 0 {
-		fmt.Fprintf(w, `Fail to get m3u8 link %s from vtv.go`, vtvC)
+		logger.Printf(`Fail to get m3u8 link %s from vtv.go`, vtvC)
 		return
 	}
 
@@ -149,11 +157,16 @@ func vtvHandler(w http.ResponseWriter, r *http.Request) {
 	links := vtvM3u8Links[vtvC]
 	tsLinks, err := vtvUtil.M3u8GetTSLinks(links[len(links)-1])
 	if err != nil {
+		logger.Panicf("Fail to get m3u8 from %s, try to update m3u8 link", links[len(links)-1])
+
 		vtvM3u8Links[vtvC] = vtvGetM3u8Link(vtvC)
 		links = vtvM3u8Links[vtvC]
+
+		logger.Panicf("New m3u8 link: %s", links[len(links)-1])
+
 		tsLinks, err = vtvUtil.M3u8GetTSLinks(links[len(links)-1])
 		if err != nil {
-			panic(err)
+			logger.Panic(err)
 		}
 	}
 
@@ -171,7 +184,7 @@ func httpServerLoop(port int) {
 
 	err := http.ListenAndServe(":"+strconv.Itoa(port), nil)
 	if err != nil {
-		panic(err)
+		logger.Panic(err)
 	}
 }
 
@@ -180,12 +193,12 @@ func main() {
 	if len(os.Args) != 2 {
 		fmt.Fprintf(os.Stderr, "vtv_link_go <port_number>\n")
 		fmt.Fprintf(os.Stderr, "you must provide port number for web server\n")
-		return
+		os.Exit(1)
 	}
 
 	portNumber, err := strconv.Atoi(os.Args[1])
 	if err != nil {
-		panic(err)
+		logger.Panic(err)
 	}
 
 	httpServerLoop(portNumber)
