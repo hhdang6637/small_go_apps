@@ -5,7 +5,8 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"vtv_link_go/vtvUtil"
+
+	"github.com/hhdang6637/small_go_apps/vtv_link_go/vtvUtil"
 )
 
 var (
@@ -26,9 +27,20 @@ var (
 
 func testVtvM3u8Link() {
 
-	m3u8Links := vtvUtil.M3u8Index2Mono(vtvUtil.GetVtvGoM3u8Link(vtvChannel["vtv1"]))
+	m3u8Links := vtvGetM3u8Link("vtv1")
+
+	tsLinks, err := vtvUtil.M3u8GetTSLinks(m3u8Links[len(m3u8Links)-1])
+	if err != nil {
+		vtvM3u8Links["vtv1"] = vtvGetM3u8Link("vtv1")
+		m3u8Links = vtvM3u8Links["vtv1"]
+		tsLinks, err = vtvUtil.M3u8GetTSLinks(m3u8Links[len(m3u8Links)-1])
+		if err != nil {
+			panic(err)
+		}
+	}
+
 	if len(m3u8Links) > 0 {
-		for _, link := range vtvUtil.M3u8GetTSLinks(m3u8Links[len(m3u8Links)-1]) {
+		for _, link := range tsLinks {
 			fmt.Println(link)
 		}
 	} else {
@@ -74,7 +86,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 			</tr>
   `)
 
-	for k, _ := range vtvChannel {
+	for k := range vtvChannel {
 
 		if vtvM3u8Links[k] == nil || len(vtvM3u8Links[k]) == 0 {
 			vtvM3u8Links[k] = vtvGetM3u8Link(k)
@@ -99,7 +111,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	`)
 }
 
-func vtv1Handler(w http.ResponseWriter, r *http.Request) {
+func vtvHandler(w http.ResponseWriter, r *http.Request) {
 
 	vtvC := "vtv1"
 	switch r.RequestURI {
@@ -134,7 +146,18 @@ func vtv1Handler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Add("Content-Type", "application/vnd.apple.mpegurl")
 
-	for _, link := range vtvUtil.M3u8GetTSLinks(vtvM3u8Links[vtvC][len(vtvM3u8Links[vtvC])-1]) {
+	links := vtvM3u8Links[vtvC]
+	tsLinks, err := vtvUtil.M3u8GetTSLinks(links[len(links)-1])
+	if err != nil {
+		vtvM3u8Links[vtvC] = vtvGetM3u8Link(vtvC)
+		links = vtvM3u8Links[vtvC]
+		tsLinks, err = vtvUtil.M3u8GetTSLinks(links[len(links)-1])
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	for _, link := range tsLinks {
 		fmt.Fprintf(w, "%s\n", link)
 	}
 }
@@ -142,8 +165,8 @@ func vtv1Handler(w http.ResponseWriter, r *http.Request) {
 func httpServerLoop(port int) {
 
 	http.HandleFunc("/", rootHandler)
-	for k, _ := range vtvChannel {
-		http.HandleFunc("/"+k+".m3u8", vtv1Handler)
+	for k := range vtvChannel {
+		http.HandleFunc("/"+k+".m3u8", vtvHandler)
 	}
 
 	err := http.ListenAndServe(":"+strconv.Itoa(port), nil)

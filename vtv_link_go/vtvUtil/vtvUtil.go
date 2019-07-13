@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"regexp"
 	"strings"
@@ -208,7 +209,7 @@ func M3u8Index2Mono(link string) []string {
 }
 
 // M3u8GetTSLinks return all ts links in m3u8 link
-func M3u8GetTSLinks(m3u8URL string) []string {
+func M3u8GetTSLinks(m3u8URL string) ([]string, error) {
 	var (
 		tsLinks []string
 		resp    *http.Response
@@ -223,6 +224,10 @@ func M3u8GetTSLinks(m3u8URL string) []string {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode%200 > 99 {
+		return nil, errors.New("Fail to request ts links")
+	}
+
 	scanner := bufio.NewScanner(resp.Body)
 	for scanner.Scan() {
 		str := scanner.Text()
@@ -234,5 +239,5 @@ func M3u8GetTSLinks(m3u8URL string) []string {
 		}
 	}
 
-	return tsLinks
+	return tsLinks, nil
 }
