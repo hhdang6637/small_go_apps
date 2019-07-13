@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sort"
 	"strconv"
 
 	"github.com/hhdang6637/small_go_apps/vtv_link_go/vtvUtil"
@@ -26,6 +27,8 @@ var (
 		// "Yeah1TV":  "https://vtvgo.vn/xem-truc-tuyen-kenh-yeah1tv-195.html",
 		"HungYen": "https://vtvgo.vn/xem-truc-tuyen-kenh-th-hưng-yên-185.html",
 	}
+
+	vtvs = make([]string, 0)
 
 	vtvM3u8Links = map[string][]string{}
 
@@ -97,7 +100,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 			</tr>
   `)
 
-	for k := range vtvChannel {
+	for _, k := range vtvs {
 
 		if vtvM3u8Links[k] == nil || len(vtvM3u8Links[k]) == 0 {
 			vtvM3u8Links[k] = vtvGetM3u8Link(k)
@@ -203,6 +206,9 @@ func main() {
 	logger.Printf("Collect link started")
 
 	for k := range vtvChannel {
+
+		vtvs = append(vtvs, k)
+
 		if vtvM3u8Links[k] == nil || len(vtvM3u8Links[k]) == 0 {
 			vtvM3u8Links[k] = vtvGetM3u8Link(k)
 		}
@@ -211,6 +217,7 @@ func main() {
 			logger.Panicf(`Fail to get m3u8 link %s from vtv.go`, k)
 		}
 	}
+	sort.Strings(vtvs)
 
 	logger.Printf("Collect link done")
 
