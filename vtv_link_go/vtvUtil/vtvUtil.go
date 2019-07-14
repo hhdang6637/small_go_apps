@@ -224,7 +224,7 @@ func M3u8GetTSLinks(m3u8URL string) ([]string, error) {
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode%200 > 99 {
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
 		return nil, errors.New("Fail to request ts links")
 	}
 
