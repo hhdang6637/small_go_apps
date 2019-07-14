@@ -127,37 +127,9 @@
                     "isHost": false
                 },
                 {
-                    "image": "http://tduc.tk/logo/274/vtc1hd.jpg",
-                    "name": "VTC1 HD",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC1_1/hlsv5/VTC1_1-audio_20000=212400-video=2821200.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
                     "image": "http://tduc.tk/logo/274/vtc1.jpg",
                     "name": "VTC1",
                     "url": "http://media.kythuatvov.vn:1936/live/VTC1.HD/chunklist_w507740860.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/vtc14hd.jpg",
-                    "name": "VTC14 HD",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC14_14/hlsv5/VTC14_14-audio_20000=212400-video=1582000.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/vtc16.jpg",
-                    "name": "VTC16",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC16_16/hlsv5/VTC16_16-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/cna.jpg",
-                    "name": "Channel NewsAsia (HD)",
-                    "url": "https://ftacnas.akamaized.net/out/v1/9ddbc4447c95436baf9bcf61377f7046/index_5.m3u8",
                     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
                     "isHost": false
                 },
@@ -293,55 +265,6 @@
                     "isHost": false
                 },
                 {
-                    "image": "http://tduc.tk/logo/274/vtc2.jpg",
-                    "name": "VTC2",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC2_2/hlsv5/VTC2_2-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/vtc4-yeah1family.jpg",
-                    "name": "VTC4 HD - Yeah1 Family",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC4_4/hlsv5/VTC4_4-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/vtc5hd.jpg",
-                    "name": "VTC5 HD",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC5_5/hlsv5/VTC5_5-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/vtc7hd-todaytv.jpg",
-                    "name": "VTC7 HD - Today TV",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC7_7/hlsv5/VTC7_7-audio_20000=212400-video=1200000.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/vtc8.jpg",
-                    "name": "VTC8",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC8_8/hlsv5/VTC8_8-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/vtc9hd.jpg",
-                    "name": "VTC9 HD",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC9_9/hlsv5/VTC9_9-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/vtc10.jpg",
-                    "name": "VTC10 - NetViet",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC10_10/hlsv5/VTC10_10-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
                     "image": "http://tduc.tk/logo/274/fashiontv.jpg",
                     "name": "Fashion TV (HD)",
                     "url": "https://fash1043.cloudycdn.services/slive/_definst_/ftv_ftv_paris_pg_4dg_27027_paris_pg18_188_hls.smil/playlist.m3u8",
@@ -373,13 +296,6 @@
                     "image": "http://tduc.tk/logo/274/nhk.jpg",
                     "name": "NHK World Premium",
                     "url": "http://203.162.235.41:16901",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/.jpg",
-                    "name": "n/a",
-                    "url": "https://ftaokto.akamaized.net/out/v1/dcbd96fdb4f24038a854bcd95ba36593/index_5.m3u8",
                     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
                     "isHost": false
                 }
@@ -424,13 +340,6 @@
             "image": "https://i.postimg.cc/SsZykdD6/canhac.jpg",
             "stations": [
                 {
-                    "image": "http://tduc.tk/logo/274/vtc13hd.jpg",
-                    "name": "VTC13 HD",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC13_13/hlsv5/VTC13_13-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
                     "image": "http://tduc.tk/logo/274/htvc-canhac.jpg",
                     "name": "HTVC Ca Nhạc",
                     "url": "http://live.cdn.mobifonetv.vn/motv/myhtvccanhac_hls.smil/playlist.m3u8",
@@ -441,13 +350,6 @@
                     "image": "http://tduc.tk/logo/274/nrj.jpg",
                     "name": "NRJ TV",
                     "url": "http://energytv.vedge.infomaniak.com/livecast/energytv/playlist.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/mcountdown.jpg",
-                    "name": "M Countdown",
-                    "url": "http://d1cdshhn0sj9xt.cloudfront.net/529/QualityLevels(2628000,as=video)/Fragments(video=i,format=hls).m3u8",
                     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
                     "isHost": false
                 },
@@ -471,13 +373,6 @@
                     "url": "https://www.djing.com/tv/classics.m3u8",
                     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
                     "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/djing.jpg",
-                    "name": "DJing TV Summer Vibes",
-                    "url": "https://www.djing.com/tv/session_summer-vibes.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
                 }
             ]
         },
@@ -485,13 +380,6 @@
             "name": "Thiếu nhi",
             "image": "https://i.postimg.cc/cJhWBTqp/thieunhi.jpg",
             "stations": [
-                {
-                    "image": "http://tduc.tk/logo/274/vtc11.jpg",
-                    "name": "VTC11",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC11_11/hlsv5/VTC11_11-audio_20000=212400-video=1275600.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
                 {
                     "image": "http://tduc.tk/logo/274/sam.jpg",
                     "name": "SAM",
@@ -539,13 +427,6 @@
             "name": "Thể thao",
             "image": "https://i.postimg.cc/s2syWqLP/thethao.jpg",
             "stations": [
-                {
-                    "image": "http://tduc.tk/logo/274/vtc3hd.jpg",
-                    "name": "VTC3 HD",
-                    "url": "https://cdn.vtc.gov.vn/live/eds/VTC3_3/hlsv5/VTC3_3-audio_20000=212400-video=1200000.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
                 {
                     "image": "http://tduc.tk/logo/274/htvthethao.jpg",
                     "name": "HTV Thể Thao",
@@ -695,13 +576,6 @@
                     "image": "http://tduc.tk/logo/274/vovgthcm.jpg",
                     "name": "VOVGT HCM",
                     "url": "http://media.kythuatvov.vn:1936/live/VOVGTHCM.sdp/playlist.m3u8",
-                    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
-                    "isHost": false
-                },
-                {
-                    "image": "http://tduc.tk/logo/274/xone.jpg",
-                    "name": "XONE FM",
-                    "url": "http://118.69.80.90:8000/live/",
                     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3782.79 Safari/537.36",
                     "isHost": false
                 },
