@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strconv"
 
+	"github.com/hhdang6637/small_go_apps/vtv_link_go/htmlHelper"
 	"github.com/hhdang6637/small_go_apps/vtv_link_go/vtvUtil"
 )
 
@@ -31,6 +32,8 @@ var (
 	vtvs = make([]string, 0)
 
 	vtvM3u8Links = map[string][]string{}
+
+	otherAvaliableGroups = []vtvUtil.Group{}
 
 	logger = log.New(os.Stdout, "", log.Ldate|log.Lmicroseconds)
 )
@@ -64,42 +67,7 @@ func vtvGetM3u8Link(vtv string) []string {
 	return vtvUtil.M3u8Index2Mono(vtvUtil.GetVtvGoM3u8Link(vtvChannel[vtv]))
 }
 
-func rootHandler(w http.ResponseWriter, r *http.Request) {
-
-	logger.Printf("%s: %s", r.RemoteAddr, r.RequestURI)
-
-	fmt.Fprint(w, `<!DOCTYPE html>
-		<html>
-		<head>
-		<style>
-		table {
-		font-family: arial, sans-serif;
-		border-collapse: collapse;
-		width: 100%;
-		}
-
-		td, th {
-		border: 1px solid #dddddd;
-		text-align: left;
-		padding: 8px;
-		}
-
-		tr:nth-child(even) {
-		background-color: #dddddd;
-		}
-		</style>
-		</head>
-		<body>
-
-		<h2>VTV Link Table</h2>
-
-		<table>
-			<tr>
-				<th>Channel</th>
-				<th>M3U8 link</th>
-			</tr>
-  `)
-
+func vtvTableLinks(w http.ResponseWriter) {
 	for _, k := range vtvs {
 
 		if vtvM3u8Links[k] == nil || len(vtvM3u8Links[k]) == 0 {
@@ -114,14 +82,52 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 		<tr>
 	  		<td><h2><a href="/%s.m3u8" >%s</a></h2></td>
 	  		<td>%s</td>
-		</tr>`, k, k, vtvM3u8Links[k][len(vtvM3u8Links[k])-1])
+		</tr>
+`,
+			k, k, vtvM3u8Links[k][len(vtvM3u8Links[k])-1])
 	}
-	fmt.Fprintf(w, `
-		</table>
-		
-		</body>
-		</html>
-	`)
+}
+
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+
+	logger.Printf("%s: %s", r.RemoteAddr, r.RequestURI)
+
+	if r.RequestURI != "/" {
+		w.WriteHeader(404)
+		fmt.Fprintln(w, "NOT FOUND URL REQUEST")
+		return
+	}
+
+	htmlHelper.HTMLDocOpen(w)
+	// vtvgo links
+	fmt.Fprintln(w, "<h2>VTV Link Table</h2>")
+	htmlHelper.TableDocOpen(w, []string{"Channel", "M3U8 link"})
+	vtvTableLinks(w)
+	htmlHelper.TableDocClose(w)
+
+	// other links
+	for _, g := range otherAvaliableGroups {
+		if vtvUtil.GroupHaveM3u8Links(g) == false {
+			continue
+		}
+		fmt.Fprintf(w, "<h2>%s</h2>", g.Name)
+		htmlHelper.TableDocOpen(w, []string{"Channel", "M3U8 link"})
+		for _, s := range g.Stations {
+			if s.IsHost != true {
+				fmt.Fprintf(w, `
+		<tr>
+	  		<td><h2><a href="%s" >%s</a></h2></td>
+	  		<td>%s</td>
+		</tr>
+`,
+					s.URL, s.Name, s.URL)
+			}
+		}
+		htmlHelper.TableDocClose(w)
+	}
+
+	htmlHelper.TableDocClose(w)
+	htmlHelper.HTMLDocClose(w)
 }
 
 func vtvHandler(w http.ResponseWriter, r *http.Request) {
@@ -218,6 +224,8 @@ func main() {
 		}
 	}
 	sort.Strings(vtvs)
+
+	otherAvaliableGroups = vtvUtil.GetAvaliableGroups()
 
 	logger.Printf("Collect link done")
 
