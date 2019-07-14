@@ -72,3 +72,50 @@ func GroupHaveM3u8Links(groups Group) bool {
 	}
 	return false
 }
+
+// filter links die
+// func main() {
+// 	http.DefaultClient.Timeout = time.Second * 5
+// 	online := getAvaliableGroups()
+// 	for gIndex, g := range online.Groups {
+// 		for sIndex, s := range g.Stations {
+// 			if s.IsHost == true {
+// 				continue
+// 			}
+// 			fmt.Fprintf(os.Stderr, "Verfiy link: %s - %s\n", s.Name, s.URL)
+// 			resp, err := http.Get(s.URL)
+// 			if err != nil || resp.StatusCode >= 300 {
+// 				fmt.Fprintf(os.Stderr, "Link die: remove later %s\n", s.Name)
+// 				online.Groups[gIndex].Stations[sIndex].IsHost = true
+// 				continue
+// 			}
+// 			defer resp.Body.Close()
+// 		}
+// 	}
+
+// 	for gIndex, g := range online.Groups {
+// 		newStations := []Station{}
+// 		for _, s := range g.Stations {
+// 			if s.IsHost == true {
+// 				continue
+// 			}
+// 			newStations = append(newStations, s)
+// 		}
+// 		online.Groups[gIndex].Stations = newStations
+// 	}
+
+// 	newGs := []Group{}
+// 	for _, g := range online.Groups {
+// 		if len(g.Stations) == 0 {
+// 			continue
+// 		}
+// 		newGs = append(newGs, g)
+// 	}
+// 	online.Groups = newGs
+
+// 	data, err := json.MarshalIndent(online, "", "    ")
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	fmt.Println(string(data))
+// }
