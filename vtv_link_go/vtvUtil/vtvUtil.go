@@ -1,4 +1,4 @@
-package vtvUtil
+package vtvutil
 
 import (
 	"bufio"

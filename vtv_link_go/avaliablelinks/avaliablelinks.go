@@ -1,4 +1,4 @@
-package vtvUtil
+package avaliablelinks
 
 import (
 	"bufio"

@@ -8,8 +8,9 @@ import (
 	"sort"
 	"strconv"
 
+	"github.com/hhdang6637/small_go_apps/vtv_link_go/avaliablelinks"
 	"github.com/hhdang6637/small_go_apps/vtv_link_go/htmlHelper"
-	"github.com/hhdang6637/small_go_apps/vtv_link_go/vtvUtil"
+	"github.com/hhdang6637/small_go_apps/vtv_link_go/vtvutil"
 )
 
 var (
@@ -33,7 +34,7 @@ var (
 
 	vtvM3u8Links = map[string][]string{}
 
-	otherAvaliableGroups = []vtvUtil.Group{}
+	otherAvaliableGroups = []avaliablelinks.Group{}
 
 	logger = log.New(os.Stdout, "", log.Ldate|log.Lmicroseconds)
 )
@@ -42,11 +43,11 @@ func testVtvM3u8Link() {
 
 	m3u8Links := vtvGetM3u8Link("vtv1")
 
-	tsLinks, err := vtvUtil.M3u8GetTSLinks(m3u8Links[len(m3u8Links)-1])
+	tsLinks, err := vtvutil.M3u8GetTSLinks(m3u8Links[len(m3u8Links)-1])
 	if err != nil {
 		vtvM3u8Links["vtv1"] = vtvGetM3u8Link("vtv1")
 		m3u8Links = vtvM3u8Links["vtv1"]
-		tsLinks, err = vtvUtil.M3u8GetTSLinks(m3u8Links[len(m3u8Links)-1])
+		tsLinks, err = vtvutil.M3u8GetTSLinks(m3u8Links[len(m3u8Links)-1])
 		if err != nil {
 			logger.Panic(err)
 		}
@@ -64,7 +65,7 @@ func testVtvM3u8Link() {
 func vtvGetM3u8Link(vtv string) []string {
 	logger.Printf("vtvGetM3u8Link('%s') start", vtv)
 	defer logger.Printf("vtvGetM3u8Link('%s') end", vtv)
-	return vtvUtil.M3u8Index2Mono(vtvUtil.GetVtvGoM3u8Link(vtvChannel[vtv]))
+	return vtvutil.M3u8Index2Mono(vtvutil.GetVtvGoM3u8Link(vtvChannel[vtv]))
 }
 
 func vtvTableLinks(w http.ResponseWriter) {
@@ -107,7 +108,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 
 	// other links
 	for _, g := range otherAvaliableGroups {
-		if vtvUtil.GroupHaveM3u8Links(g) == false {
+		if avaliablelinks.GroupHaveM3u8Links(g) == false {
 			continue
 		}
 		fmt.Fprintf(w, "<h2>%s</h2>", g.Name)
@@ -168,7 +169,7 @@ func vtvHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "application/vnd.apple.mpegurl")
 
 	links := vtvM3u8Links[vtvC]
-	tsLinks, err := vtvUtil.M3u8GetTSLinks(links[len(links)-1])
+	tsLinks, err := vtvutil.M3u8GetTSLinks(links[len(links)-1])
 	if err != nil {
 		logger.Panicf("Fail to get m3u8 from %s, try to update m3u8 link", links[len(links)-1])
 
@@ -177,7 +178,7 @@ func vtvHandler(w http.ResponseWriter, r *http.Request) {
 
 		logger.Panicf("New m3u8 link: %s", links[len(links)-1])
 
-		tsLinks, err = vtvUtil.M3u8GetTSLinks(links[len(links)-1])
+		tsLinks, err = vtvutil.M3u8GetTSLinks(links[len(links)-1])
 		if err != nil {
 			logger.Panic(err)
 		}
@@ -225,7 +226,7 @@ func main() {
 	}
 	sort.Strings(vtvs)
 
-	otherAvaliableGroups = vtvUtil.GetAvaliableGroups()
+	otherAvaliableGroups = avaliablelinks.GetAvaliableGroups()
 
 	logger.Printf("Collect link done")
 
